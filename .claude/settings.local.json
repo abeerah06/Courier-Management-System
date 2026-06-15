@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir D:/bookstore-app)",
+      "Read(//d//**)",
+      "Bash(python -m venv .venv)",
+      "PowerShell(cd D:\\\\bookstore-app; .\\\\.venv\\\\Scripts\\\\pip.exe freeze | Select-String -Pattern \"^\\(Django|sqlparse|asgiref|tzdata\\)\" | ForEach-Object { $_.Line })",
+      "Bash(powershell -Command \"Expand-Archive -Path 'New WinRAR ZIP archive.zip' -DestinationPath 'project_extracted' -Force\")",
+      "Bash(powershell -Command \"Expand-Archive -Path 'C:\\\\Users\\\\abeer\\\\Downloads\\\\New WinRAR ZIP archive.zip' -DestinationPath 'C:\\\\Users\\\\abeer\\\\Downloads\\\\project_extracted' -Force; Get-ChildItem -Recurse 'C:\\\\Users\\\\abeer\\\\Downloads\\\\project_extracted' | Select-Object FullName\")",
+      "Bash(dotnet build *)"
+    ]
+  }
+}

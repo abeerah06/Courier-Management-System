@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        {% if confirm_delete %}
+          <h3 class="card-title text-danger">Delete Courier</h3>
+          <p>Are you sure you want to delete courier <strong>{{ courier.tracking_id }}</strong>?</p>
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            <a href="{% url 'list_couriers' %}" class="btn btn-secondary">Cancel</a>
+          </form>
+        {% else %}
+          <h3 class="card-title mb-3">Courier Detail</h3>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item"><strong>Tracking ID:</strong> {{ courier.tracking_id }}</li>
+            <li class="list-group-item"><strong>Sender:</strong> {{ courier.sender_name }}</li>
+            <li class="list-group-item"><strong>Receiver:</strong> {{ courier.receiver_name }}</li>
+            <li class="list-group-item"><strong>Origin:</strong> {{ courier.origin }}</li>
+            <li class="list-group-item"><strong>Destination:</strong> {{ courier.destination }}</li>
+            <li class="list-group-item"><strong>Weight:</strong> {{ courier.weight }} kg</li>
+            <li class="list-group-item"><strong>Status:</strong> {{ courier.status }}</li>
+            <li class="list-group-item"><strong>Created At:</strong> {{ courier.created_at|date:"Y-m-d H:i" }}</li>
+          </ul>
+          <div class="d-flex gap-2">
+            <a href="{% url 'update_courier' courier.id %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'delete_courier' courier.id %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'list_couriers' %}" class="btn btn-secondary">Back</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
